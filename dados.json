@@ -1,0 +1,17 @@
+[
+  {
+    "nome": "Joao",
+    "saldo": 600,
+    "compras": [
+      "asd",
+      "20"
+    ]
+  },
+  {
+    "nome": "Maria",
+    "saldo": 700,
+    "compras": [
+      "20"
+    ]
+  }
+]

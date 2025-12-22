@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leilão de Natal 🎄</title>
+    <style>
+        :root { --red: #d42426; --green: #2e7d32; --gold: #f9a825; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 10px solid var(--red); }
+        h1 { color: var(--green); margin-bottom: 5px; }
+        .status-box { background: #fff9c4; padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 5px solid var(--gold); }
+        .saldo-gigante { font-size: 2.5rem; font-weight: bold; color: var(--green); }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .btn-busca { background: var(--green); color: white; }
+        .btn-admin { background: var(--red); color: white; margin-top: 10px; }
+        .admin-panel { margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; display: none; }
+        .lista-compras { font-size: 0.9rem; color: #666; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Leilão de Natal 🎅</h1>
+    <p>Consulte seu saldo e itens ganhos</p>
+
+    <input type="text" id="nomeBusca" placeholder="Digite seu nome (Ex: Joao)">
+    <button class="btn-busca" onclick="buscarDados()">VER MEU SALDO</button>
+
+    <div id="resultado" style="display: none;">
+        <div class="status-box">
+            <div id="resNome" style="font-weight: bold; text-transform: uppercase;"></div>
+            <div class="saldo-gigante">R$ <span id="resSaldo">0</span></div>
+            <p>Itens: <span id="resCompras" class="lista-compras">---</span></p>
+        </div>
+    </div>
+
+    <button class="btn-admin" onclick="document.getElementById('admin').style.display='block'">Painel do Leiloeiro</button>
+    
+    <div id="admin" class="admin-panel">
+        <h3>Registrar Venda</h3>
+        <input type="number" id="lanceValor" placeholder="Valor do Lance (R$)">
+        <input type="text" id="lanceItem" placeholder="Nome do Item (Ex: Panetone)">
+        <button class="btn-admin" onclick="registrarVenda()">CONFIRMAR VENDA</button>
+    </div>
+</div>
+
+<script>
+    // Função para buscar dados no servidor
+    async function buscarDados() {
+        const nomeInput = document.getElementById('nomeBusca').value.trim();
+        if (!nomeInput) return alert("Digite um nome!");
+
+        try {
+            const response = await fetch('/api/jogadores');
+            const jogadores = await response.json();
+            
+            // Procura o jogador no JSON que veio do servidor
+            const j = jogadores.find(item => item.nome.toLowerCase() === nomeInput.toLowerCase());
+
+            if (j) {
+                document.getElementById('resNome').innerText = j.nome;
+                document.getElementById('resSaldo').innerText = j.saldo;
+                document.getElementById('resCompras').innerText = j.compras.length > 0 ? j.compras.join(', ') : "Nenhum item";
+                document.getElementById('resultado').style.display = 'block';
+            } else {
+                alert("Nome não encontrado no banco de dados!");
+            }
+        } catch (e) {
+            alert("Erro ao conectar com o notebook servidor.");
+        }
+    }
+
+    // Função para enviar a venda para o servidor e gravar no JSON
+    async function registrarVenda() {
+        const nome = document.getElementById('nomeBusca').value.trim();
+        const valor = parseFloat(document.getElementById('lanceValor').value);
+        const item = document.getElementById('lanceItem').value;
+
+        if (!nome || !valor || !item) return alert("Preencha todos os campos no painel e o nome no campo de busca!");
+
+        try {
+            const response = await fetch('/api/lance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, valor, item })
+            });
+
+            const data = await response.json();
+
+            if (data.sucesso) {
+                alert("Venda registrada com sucesso!");
+                buscarDados(); // Atualiza a tela com o novo saldo
+            } else {
+                alert("Erro: " + data.erro);
+            }
+        } catch (e) {
+            alert("Erro ao salvar no servidor.");
+        }
+    }
+</script>
+
+</body>
+</html>
