@@ -8,7 +8,9 @@
 <body>
 
 <div class="container">
-    <h1>JPBANK</h1>
+
+    
+      <h1>JPBANK</h1>
 
     <input type="text" id="nomeBusca" placeholder="Digite seu nome (Ex: Joao)">
   
@@ -21,6 +23,12 @@
         </div>
     </div>
 
+    <div id="admin" class="admin-panel">
+        <h3>Registrar Venda</h3>
+        <input type="number" id="lanceValor" placeholder="Valor do Lance (R$)">
+        <input type="text" id="lanceItem" placeholder="Nome do Item (Ex: Panetone)">
+        <button class="btn-admin" onclick="registrarVenda()">CONFIRMAR VENDA</button>
+    </div>
 </div>
 
 <script>

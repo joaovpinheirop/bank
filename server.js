@@ -27,6 +27,17 @@ app.post('/api/lance', (req, res) => {
         res.status(400).json({ erro: "Saldo insuficiente ou nome não encontrado" });
     }
 });
+const path = require('path');
+// Rota para redirecionar o usuário para a página de perfil
+app.get('/admin/:nome', (req, res) => {
+    // Enviamos o arquivo HTML que está na pasta public
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+    // Rota para redirecionar o usuário para a página de perfil
+app.get('/bank/:nome', (req, res) => {
+    // Enviamos o arquivo HTML que está na pasta public
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Escuta na rede local (Porta 3000)
 app.listen(3000, '0.0.0.0', () => {
