@@ -45,7 +45,7 @@
     font-size: 30px;
     margin: 20PX 0PX;
 }
-h1{
+h1,h3{
     font-family: "BBH Bartle", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -150,8 +150,11 @@ button{
     </style>
 </head>
 <body>
+     <h3>LISO BANK</h3>
+
     <div class="design">
-        <h1 id="resNome">Pobrenk</h1>
+        
+        <h1 id="resNome">LISO BANK</h1>
         
     </div>
     
@@ -163,7 +166,6 @@ button{
         <div class="status-box">
             SALDO
             <div class="saldo-gigante">R$ <span id="resSaldo">0</span></div>
-            <p>Compras: <span id="resCompras" class="lista-compras">---</span></p>
             <button>PIx</button>
             <button>Pagar</button>
             <button>cartao</button>
@@ -171,6 +173,7 @@ button{
     </div>
     
     <div class="emprestimo">Boas notícias! Analisamos seu perfil e liberamos um limite pré-aprovado de R$ 0,00. Use com moderação!</div>
+    <p>Compras: <span id="resCompras" class="lista-compras">---</span></p>
 </div>
 <div class="carrossel">
     <div class="slides" id="lista-slides">
@@ -178,10 +181,11 @@ button{
         <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p2.png"></div>
         <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p3.png"></div>
         <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p4.png"></div>
+        <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p5.png"></div>
     </div>
 </div>
 
-<p id="direitos">todos os direitos reservados a LIZO BANK &copy; 2024</p>
+<p id="direitos">todos os direitos reservados a LISO BANK &copy; 2024</p>
 
 <script>
     // Função executada assim que a página abre
@@ -272,7 +276,7 @@ function passarSlide() {
 }
 
 // Configura para passar a cada 3 segundos (3000 milissegundos)
-setInterval(passarSlide, 10000);
+setInterval(passarSlide, 15000);
 </script>
 
 </body>
