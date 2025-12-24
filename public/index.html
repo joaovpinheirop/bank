@@ -3,25 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leilão de Natal 🎄</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
+    <title>LIZO BANK</title>
+    <style>
+
+        :root {
+  --cor-principal: #ff6200;
+  --cor-secundaria: #2ecc71;
+  --espacamento-padrao: 20px;
+  --fonte-titulo: 'Roboto', sans-serif;
+}
+    body {  display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(42, 42, 42) !important;
+     font-family: "Google Sans", sans-serif;
+  font-optical-sizing: auto
+ 
+    }
+    #nomeBusca{
+    display: none;
+    }
+    
+    .bbh-bartle-regular {
+  font-family: "BBH Bartle", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.saldo-gigante{
+  font-family: "BBH Bartle", sans-serif;
+    font-size: 30px;
+    margin: 20PX 0PX;
+}
+h1{
+    font-family: "BBH Bartle", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+}
+
+
+.container{
+    color: white;
+    border-radius: 20PX;
+     font-weight: 800;
+    width: 90%;  
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    padding: 21px;
+   
+}
+.design{
+      display: flex;
+    align-items: center;
+   border-radius: 20PX;
+    width: 90%; 
+    display: flex;
+    flex-direction: column;
+    padding: 21px;background-color:var(--cor-principal) ;
+}
+.user{
+    
+    width: 90%;
+}
+#resNome{
+    color: rgb(255, 255, 255);
+}
+#UseName{
+    
+    color: white;
+}
+button{
+    background-color:var(--cor-principal)  ;
+    border-radius: 100px;
+    border: 0;
+    padding: 10px;
+    width: 100PX;
+  color: rgb(255, 255, 255);
+  
+}
+.emprestimo{
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(76, 76, 76) ;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 0;
+    padding: 10px;
+    height: 100px;
+  font-weight: 400;
+  font-style: normal;
+  margin: 10px 0px;
+  color: rgb(255, 255, 255);
+}
+
+.carrossel {
+    width: 100%;
+    max-width: 400px; /* Largura do celular */
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.slides {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Faz as imagens "travarem" no lugar */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Esconde a barra de rolagem para ficar mais limpo */
+.slides::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    flex: 0 0 100%; /* Cada imagem ocupa 100% da largura do carrossel */
+    scroll-snap-align: start;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+#direitos{
+    font-family: "BBH Bartle", sans-serif;
+    font-size: 10px;
+    margin: 20px;
+  color: var(--cor-principal);
+}
+    </style>
 </head>
 <body>
-
+    <div class="design">
+        <h1 id="resNome">Pobrenk</h1>
+        
+    </div>
+    
 <div class="container">
-    <h1>JPBANK</h1>
 
     <input type="text" id="nomeBusca" placeholder="Digite seu nome (Ex: Joao)">
-  
 
     <div id="resultado" style="display: none;">
         <div class="status-box">
-            <div id="resNome" style="font-weight: bold; text-transform: uppercase;"></div>
+            SALDO
             <div class="saldo-gigante">R$ <span id="resSaldo">0</span></div>
-            <p>Itens: <span id="resCompras" class="lista-compras">---</span></p>
+            <p>Compras: <span id="resCompras" class="lista-compras">---</span></p>
+            <button>PIx</button>
+            <button>Pagar</button>
+            <button>cartao</button>
         </div>
     </div>
-
+    
+    <div class="emprestimo">Boas notícias! Analisamos seu perfil e liberamos um limite pré-aprovado de R$ 0,00. Use com moderação!</div>
 </div>
+<div class="carrossel">
+    <div class="slides" id="lista-slides">
+        <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p1.png"></div>
+        <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p2.png"></div>
+        <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p3.png"></div>
+        <div class="slide"><img src="https://joaovpinheiros.vercel.app/img/Bank/p4.png"></div>
+    </div>
+</div>
+
+<p id="direitos">todos os direitos reservados a LIZO BANK &copy; 2024</p>
 
 <script>
     // Função executada assim que a página abre
@@ -90,6 +250,29 @@
             alert(data.erro);
         }
     }
+
+    const slides = document.getElementById('lista-slides');
+let index = 0;
+
+function passarSlide() {
+    const totalSlides = slides.children.length;
+    index++;
+
+    // Se chegar no último, volta para o primeiro
+    if (index >= totalSlides) {
+        index = 0;
+    }
+
+    // Calcula a largura de um slide e faz o scroll
+    const larguraSlide = slides.children[0].offsetWidth;
+    slides.scrollTo({
+        left: larguraSlide * index,
+        behavior: 'smooth'
+    });
+}
+
+// Configura para passar a cada 3 segundos (3000 milissegundos)
+setInterval(passarSlide, 10000);
 </script>
 
 </body>
